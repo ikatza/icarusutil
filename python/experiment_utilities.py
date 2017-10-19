@@ -90,19 +90,19 @@ def get_sam_metadata(project, stage):
 
     return result
 
-# Function to return path to the setup_uboone.sh script
+# Function to return path to the setup_icarus.sh script
 
 def get_setup_script_path():
 
-    CVMFS_DIR="/cvmfs/icarus.opensciencegrid.org/products/"
+    CVMFS_DIR="/cvmfs/icarus.opensciencegrid.org/products/icarus/"
     ICARUSUTIL_DIR=''
     if os.environ.has_key('ICARUSUTIL_DIR'):
         ICARUSUTIL_DIR=os.environ['ICARUSUTIL_DIR'] + '/bin/'
 
     if os.path.isfile(CVMFS_DIR+"setup_icarus.sh"):
         setup_script = CVMFS_DIR+"setup_icarus.sh"
-    elif ICARUSUTIL_DIR != '' and os.path.isfile(UBUTIL_DIR+"setup_icarus.sh"):
-        setup_script = UBUTIL_DIR+"setup_icarus.sh"
+    elif ICARUSUTIL_DIR != '' and os.path.isfile(ICARUSUTIL_DIR+"setup_icarus.sh"):
+        setup_script = ICARUSUTIL_DIR+"setup_icarus.sh"
     else:
         raise RuntimeError, "Could not find setup script at "+CVMFS_DIR
 
