@@ -1,0 +1,10 @@
+{
+   "file_format" : "root", 
+   "file_type" : "mc",
+   "icarus_project.name" : "MCC", 
+   "icarus_project.stage" : "gen", 
+   "icarus_project.software" : "v08_12_00", 
+   "icarus_project.version" : "1.1", 
+   "production.name" : "poms_icarus_prod_cosmicmu_3ms",
+   "production.type" : "SBNworkshop2019"
+}
