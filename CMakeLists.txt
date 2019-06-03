@@ -70,6 +70,9 @@ add_subdirectory(ups)
 # Python modules.
 add_subdirectory(python)
 
+# POMS config and script files
+add_subdirectory(POMS)
+
 # Validation scripts
 # add_subdirectory(validation)
 

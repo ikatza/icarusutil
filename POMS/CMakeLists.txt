@@ -1,0 +1,7 @@
+# Executable scripts
+
+LIST(APPEND exes scripts/DeleteDuplicates.sh scripts/FindMissingFilesPOMS.sh scripts/FindUniqueFilesPOMS.sh scripts/TransferToTape.sh scripts/icaruspoms_metadata_injector.sh scripts/icaruspoms_runnumber_injector.sh scripts/icaruspoms_runnumber_injector_electronpiplus.sh scripts/icaruspoms_runnumber_injector_intrinsic_nue.sh scripts/icaruspoms_runnumber_injector_nominal_nu.sh scripts/icaruspoms_runnumber_injector_numioffaxis.sh scripts/icaruspoms_runnumber_injector_osc_nue.sh scripts/icaruspoms_runnumber_injector_run2.sh scripts/icaruspoms_runnumber_injector_single_electron.sh scripts/icaruspoms_runnumber_injector_single_mu_parallel.sh scripts/icaruspoms_runnumber_injector_singlepi0.sh scripts/icaruspoms_wrapper_fclmaker.sh)
+
+message(STATUS "Executable bash scripst ${exes}")
+
+install_scripts(LIST ${exes})
