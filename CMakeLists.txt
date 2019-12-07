@@ -88,6 +88,8 @@ add_subdirectory(POMS)
 # Root analysis modules.
 # add_subdirectory(root_analyze)
 
+# Add subdirectory for scripts
+add_subdirectory(scripts)
+
 # packaging utility
 include(UseCPack)
-
