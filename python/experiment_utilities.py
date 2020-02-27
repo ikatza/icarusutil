@@ -11,7 +11,7 @@
 #----------------------------------------------------------------------
 
 import os, pycurl
-from StringIO import StringIO
+from io import StringIO
 
 # Don't fail (on import) if samweb is not available.
 
@@ -26,7 +26,7 @@ def get_dropbox(filename):
 
     md = {}
     exp = 'icarus'
-    if os.environ.has_key('SAM_EXPERIMENT'):
+    if 'SAM_EXPERIMENT' in os.environ:
         exp = os.environ['SAM_EXPERIMENT']
     samweb = samweb_cli.SAMWebClient(experiment=exp)
     try:
@@ -40,20 +40,20 @@ def get_dropbox(filename):
     group = ''
     data_tier = ''
 
-    if md.has_key('file_type'):
+    if 'file_type' in md:
         file_type = md['file_type']
-    if md.has_key('group'):
+    if 'group' in md:
         group = md['group']
-    if md.has_key('data_tier'):
+    if 'data_tier' in md:
         data_tier = md['data_tier']
 
     if not file_type or not group or not data_tier:
-        raise RuntimeError, 'Missing or invalid metadata for file %s.' % filename
+        raise RuntimeError('Missing or invalid metadata for file %s.' % filename)
 
     # Construct dropbox path.
 
     #path = '/uboone/data/uboonepro/dropbox/%s/%s/%s' % (file_type, group, data_tier)
-    if os.environ.has_key('FTS_DROPBOX'):
+    if 'FTS_DROPBOX' in os.environ:
         dropbox_root = os.environ['FTS_DROPBOX']
     else:
         dropbox_root = '/pnfs/uboone/scratch/icaruspro/dropbox'
@@ -96,7 +96,7 @@ def get_setup_script_path():
 
     CVMFS_DIR="/cvmfs/icarus.opensciencegrid.org/products/icarus/"
     ICARUSUTIL_DIR=''
-    if os.environ.has_key('ICARUSUTIL_DIR'):
+    if 'ICARUSUTIL_DIR' in os.environ:
         ICARUSUTIL_DIR=os.environ['ICARUSUTIL_DIR'] + '/bin/'
 
     if os.path.isfile(CVMFS_DIR+"setup_icarus.sh"):
@@ -104,7 +104,7 @@ def get_setup_script_path():
     elif ICARUSUTIL_DIR != '' and os.path.isfile(ICARUSUTIL_DIR+"setup_icarus.sh"):
         setup_script = ICARUSUTIL_DIR+"setup_icarus.sh"
     else:
-        raise RuntimeError, "Could not find setup script at "+CVMFS_DIR
+        raise RuntimeError("Could not find setup script at "+CVMFS_DIR)
 
     return setup_script
 

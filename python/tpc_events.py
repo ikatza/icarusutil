@@ -10,7 +10,7 @@ myargv = sys.argv
 sys.argv = myargv[0:1]
 sys.argv.append('-n')
 # Prevent root from printing garbage on initialization.
-if os.environ.has_key('TERM'):
+if 'TERM' in os.environ:
     del os.environ['TERM']
 import ROOT
 ROOT.gErrorIgnoreLevel = ROOT.kError
@@ -64,5 +64,5 @@ def count_tpc_events(inputfile):
 
 if __name__ == "__main__":
     tpc_events = count_tpc_events(str(sys.argv[1]))
-    print tpc_events
+    print(tpc_events)
     sys.exit(0)	

@@ -25,7 +25,7 @@ myargv = sys.argv
 sys.argv = myargv[0:1]
 sys.argv.append('-n')
 # Prevent root from printing garbage on initialization.
-if os.environ.has_key('TERM'):
+if 'TERM' in os.environ:
     del os.environ['TERM']
 import ROOT
 ROOT.gErrorIgnoreLevel = ROOT.kError
@@ -162,7 +162,7 @@ def get_subruns(inputfile):
             jsonfile = '%s.json' % inputfile
             if os.path.exists(jsonfile):
                 md = json.load(open(jsonfile))
-                if md.has_key('runs'):
+                if 'runs' in md:
                     for ele in md['runs']:
                         if len(ele) >= 2:
                             run_subrun = (ele[0], ele[1])
@@ -185,5 +185,5 @@ def get_subruns(inputfile):
 if __name__ == "__main__":
     run_subruns = get_subruns(str(sys.argv[1]))
     for run_subrun in run_subruns:
-        print run_subrun[0], run_subrun[1]
+        print(run_subrun[0], run_subrun[1])
     sys.exit(0)	
