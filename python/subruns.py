@@ -4,7 +4,7 @@
 # Name: subruns.py
 #
 # Purpose: Extract (run, subrun) pairs from an artroot file or certain
-#          root tuple files.  Output one (run, subrun) pair per line 
+#          root tuple files.  Output one (run, subrun) pair per line
 #          of output.
 #
 # Created: 13-Oct-2015  H. Greenlee
@@ -17,7 +17,11 @@
 
 # Import stuff.
 
-import sys, os, json
+import warnings
+import ROOT
+import sys
+import os
+import json
 
 # Import ROOT (hide command line arguments).
 
@@ -27,18 +31,18 @@ sys.argv.append('-n')
 # Prevent root from printing garbage on initialization.
 if 'TERM' in os.environ:
     del os.environ['TERM']
-import ROOT
 ROOT.gErrorIgnoreLevel = ROOT.kError
 sys.argv = myargv
 
 # Filter warnings.
 
-import warnings
-warnings.filterwarnings('ignore', category = RuntimeWarning, message = 'creating converter.*')
+warnings.filterwarnings('ignore', category=RuntimeWarning,
+                        message='creating converter.*')
 
 # This function opens an artroot file and extracts the list of runs and subruns
 # from the SubRuns TTree.
 # A list of (run, subrun) pairs is returned as a list of 2-tuples.
+
 
 def get_subruns(inputfile):
 
@@ -49,7 +53,7 @@ def get_subruns(inputfile):
     # Check whether this file exists.
     if not os.path.exists(inputfile):
         return result
-            
+
     # Root checks.
 
     file = ROOT.TFile.Open(inputfile)
@@ -74,7 +78,7 @@ def get_subruns(inputfile):
                 run_subrun = (run, subrun)
                 result.append(run_subrun)
 
-        # If previous section didn't find anything, try extracting 
+        # If previous section didn't find anything, try extracting
         # from beam data trees.
 
         if len(result) == 0:
@@ -111,7 +115,7 @@ def get_subruns(inputfile):
                         if run_subrun not in result:
                             result.append(run_subrun)
 
-        # If previous section didn't find anything, try extracting 
+        # If previous section didn't find anything, try extracting
         # from specalib trees.
 
         if len(result) == 0:
@@ -133,7 +137,7 @@ def get_subruns(inputfile):
                         if run_subrun not in result:
                             result.append(run_subrun)
 
-        # If previous section didn't find anything, try extracting 
+        # If previous section didn't find anything, try extracting
         # from analysis tree trees.
 
         if len(result) == 0:
@@ -182,8 +186,9 @@ def get_subruns(inputfile):
 
     return result
 
+
 if __name__ == "__main__":
     run_subruns = get_subruns(str(sys.argv[1]))
     for run_subrun in run_subruns:
         print(run_subrun[0], run_subrun[1])
-    sys.exit(0)	
+    sys.exit(0)

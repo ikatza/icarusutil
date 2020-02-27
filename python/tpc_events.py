@@ -2,7 +2,10 @@
 
 # Import stuff.
 
-import sys, os
+import warnings
+import ROOT
+import sys
+import os
 
 # Import ROOT (hide command line arguments).
 
@@ -12,18 +15,18 @@ sys.argv.append('-n')
 # Prevent root from printing garbage on initialization.
 if 'TERM' in os.environ:
     del os.environ['TERM']
-import ROOT
 ROOT.gErrorIgnoreLevel = ROOT.kError
 sys.argv = myargv
 
 # Filter warnings.
 
-import warnings
-warnings.filterwarnings('ignore', category = RuntimeWarning, message = 'creating converter.*')
+warnings.filterwarnings('ignore', category=RuntimeWarning,
+                        message='creating converter.*')
 
-# This function opens an artroot file and loops over the RawDigit branch 
+# This function opens an artroot file and loops over the RawDigit branch
 # of the Events TTree.  It counts the number of non-empty RawDigit entries
 # and returns that number as its result.
+
 
 def count_tpc_events(inputfile):
 
@@ -34,7 +37,7 @@ def count_tpc_events(inputfile):
     # Check whether this file exists.
     if not os.path.exists(inputfile):
         return result
-            
+
     # Root checks.
 
     file = ROOT.TFile.Open(inputfile)
@@ -46,8 +49,8 @@ def count_tpc_events(inputfile):
         if events_tree and events_tree.InheritsFrom('TTree'):
             nevents = events_tree.GetEntriesFast()
             tfev = ROOT.TTreeFormula('events',
-                                    'raw::RawDigits_digitcopy__Swizzler.present',
-                                    events_tree)
+                                     'raw::RawDigits_digitcopy__Swizzler.present',
+                                     events_tree)
             for entry in range(nevents):
                 events_tree.GetEntry(entry)
                 present = tfev.EvalInstance64()
@@ -62,7 +65,8 @@ def count_tpc_events(inputfile):
 
     return result
 
+
 if __name__ == "__main__":
     tpc_events = count_tpc_events(str(sys.argv[1]))
     print(tpc_events)
-    sys.exit(0)	
+    sys.exit(0)
