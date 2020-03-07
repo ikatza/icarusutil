@@ -10,9 +10,9 @@
 #
 # ----------------------------------------------------------------------
 
+from __future__ import print_function
+
 import os
-import pycurl
-from io import StringIO
 
 # Don't fail (on import) if samweb is not available.
 
