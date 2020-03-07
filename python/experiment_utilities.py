@@ -59,7 +59,7 @@ def get_dropbox(filename):
     if 'FTS_DROPBOX' in os.environ:
         dropbox_root = os.environ['FTS_DROPBOX']
     else:
-        dropbox_root = '/pnfs/uboone/scratch/icaruspro/dropbox'
+        dropbox_root = '/pnfs/icarus/scratch/icaruspro/dropbox'
     path = '%s/%s/%s/%s' % (dropbox_root, file_type, group, data_tier)
     return path
 
