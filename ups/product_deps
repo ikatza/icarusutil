@@ -26,7 +26,7 @@ defaultqual e19
 #
 incdir  -
 fcldir  product_dir    job
-libdir  product_dir    python
+libdir  product_dir    lib
 bindir  product_dir    bin
 
 # table fragment to set various environment variables.
@@ -36,7 +36,7 @@ table_fragment_begin
     envSet(EXPERIMENT, icarus)
     envSet(SAM_EXPERIMENT, icarus)
     pathPrepend(PYTHONPATH, ${UPS_PROD_DIR}/bin)
-    pathPrepend(PYTHONPATH, ${UPS_PROD_DIR}/python)
+    pathPrepend(PYTHONPATH, ${UPS_PROD_DIR}/lib)
 table_fragment_end
 
 # With "product  version" table below, we now define depdendencies
@@ -47,7 +47,7 @@ art_root_io     v1_08_03
 larbatch        v01_56_01
 pycurl          -		-	optional
 
-cetbuildtools	v8_15_00	-	only_for_build
+cetbuildtools	v8_17_03	-	only_for_build
 end_product_list
 
 
