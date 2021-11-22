@@ -32,9 +32,9 @@ bindir  product_dir    bin
 # table fragment to set various environment variables.
 table_fragment_begin
     #envSet(GROUP, icarus)
-    envSet(JOBSUB_GROUP, icarus)
-    envSet(EXPERIMENT, icarus)
-    envSet(SAM_EXPERIMENT, icarus)
+    #envSet(JOBSUB_GROUP, icarus)
+    #envSet(EXPERIMENT, icarus)
+    #envSet(SAM_EXPERIMENT, icarus)
     pathPrepend(PYTHONPATH, ${UPS_PROD_DIR}/bin)
     pathPrepend(PYTHONPATH, ${UPS_PROD_DIR}/lib)
 table_fragment_end
